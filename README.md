@@ -18,29 +18,10 @@ Hooks auto-configure — no manual setup needed.
 ### Via npx skills
 
 ```bash
-npx skills add DustyWalker/skill-router
+npx skills add DustyWalker/skill-router && bash ~/.claude/skills/skill-router/scripts/setup.sh
 ```
 
-Note: with `npx skills add`, you need to manually add hooks to `~/.claude/settings.json`:
-
-<details>
-<summary>Manual hook setup</summary>
-
-```json
-{
-  "hooks": {
-    "SessionStart": [{
-      "hooks": [{
-        "type": "command",
-        "command": "node ~/.claude/skills/skill-router/scripts/build-index.mjs 2>/dev/null || true",
-        "timeout": 15
-      }]
-    }]
-  }
-}
-```
-
-</details>
+The setup script auto-patches `~/.claude/settings.json` with the SessionStart hook and runs the initial index build.
 
 ## Usage
 
