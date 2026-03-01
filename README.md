@@ -6,19 +6,25 @@ Replaces brute-force substring matching with ranked semantic search. Builds a JS
 
 ## Install
 
+### As a plugin (recommended)
+
+Hooks auto-configure — no manual setup needed.
+
+```
+/plugin marketplace add DustyWalker/skill-router
+/plugin install skill-router@skill-router
+```
+
+### Via npx skills
+
 ```bash
 npx skills add DustyWalker/skill-router
 ```
 
-Or manually:
+Note: with `npx skills add`, you need to manually add hooks to `~/.claude/settings.json`:
 
-```bash
-cp -r skills/skill-router ~/.claude/skills/skill-router
-```
-
-## Post-Install Setup
-
-Add these hooks to `~/.claude/settings.json` so the index rebuilds automatically:
+<details>
+<summary>Manual hook setup</summary>
 
 ```json
 {
@@ -29,20 +35,12 @@ Add these hooks to `~/.claude/settings.json` so the index rebuilds automatically
         "command": "node ~/.claude/skills/skill-router/scripts/build-index.mjs 2>/dev/null || true",
         "timeout": 15
       }]
-    }],
-    "ConfigChange": [{
-      "matcher": "user_settings|project_settings",
-      "hooks": [{
-        "type": "command",
-        "command": "rm -f ~/.claude/skills/skill-router/data/skills.jsonl",
-        "timeout": 5
-      }]
     }]
   }
 }
 ```
 
-If you already have hooks, merge these entries into your existing arrays.
+</details>
 
 ## Usage
 
@@ -72,12 +70,6 @@ node ~/.claude/skills/skill-router/scripts/query.mjs "your query" --top 3
 
 # Ambient mode (excludes manual-only skills)
 node ~/.claude/skills/skill-router/scripts/query.mjs "your query" --ambient
-```
-
-### Rebuild index manually
-
-```bash
-node ~/.claude/skills/skill-router/scripts/build-index.mjs
 ```
 
 ## What It Indexes
@@ -122,7 +114,9 @@ node ~/.claude/skills/skill-router/scripts/build-index.mjs
 ## Development
 
 ```bash
-cd ~/.claude/skills/skill-router
+# Clone the repo
+git clone https://github.com/DustyWalker/skill-router.git
+cd skill-router/skills/skill-router
 
 # Install dev deps (only needed for re-bundling Orama)
 npm install

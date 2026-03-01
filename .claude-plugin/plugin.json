@@ -1,0 +1,12 @@
+{
+  "name": "skill-router",
+  "description": "Semantic skill recommender — indexes all installed skills, commands, agents, and MCP servers, ranks by BM25+TF-IDF relevance with confidence scoring",
+  "version": "1.0.0",
+  "author": {
+    "name": "DustyWalker"
+  },
+  "homepage": "https://github.com/DustyWalker/skill-router",
+  "repository": "https://github.com/DustyWalker/skill-router",
+  "license": "MIT",
+  "keywords": ["skills", "routing", "search", "semantic", "bm25", "orama"]
+}
