@@ -7,7 +7,7 @@ Replaces brute-force substring matching with ranked semantic search. Builds a JS
 ## Install
 
 ```bash
-npx skills add <your-username>/skill-router
+npx skills add DustyWalker/skill-router
 ```
 
 Or manually:
